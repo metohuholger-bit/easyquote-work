@@ -1,0 +1,138 @@
+{
+  "identity": {
+    "name": "The Modern Arborist",
+    "persona": "Professional Landscape Architect meets Swiss Utility",
+    "emotional_tone": "Trustworthy, Efficient, Organic, Structured",
+    "keywords": ["Clean", "Botanical", "Mobile-First", "Professional", "Thumb-Friendly"],
+    "language": "Italian"
+  },
+  "typography": {
+    "font_family_heading": "Outfit, sans-serif",
+    "font_family_body": "Public Sans, sans-serif",
+    "scale": {
+      "h1": "text-3xl md:text-4xl font-bold tracking-tight leading-none",
+      "h2": "text-2xl md:text-3xl font-semibold tracking-tight",
+      "h3": "text-xl font-medium tracking-normal",
+      "body_lg": "text-lg leading-relaxed",
+      "body_base": "text-base leading-relaxed text-slate-600",
+      "caption": "text-sm text-slate-500 uppercase tracking-widest font-semibold"
+    },
+    "pairing_logic": "Geometric headings for modern feel, legible humanist sans for body to ensure readability in sunlight."
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "DEFAULT": "#1B3A24",
+        "foreground": "#FFFFFF",
+        "description": "Deep Forest Green - Trust, Nature, Professionalism"
+      },
+      "secondary": {
+        "DEFAULT": "#D56F53",
+        "foreground": "#FFFFFF",
+        "description": "Muted Terracotta - Accents, CTAs, Highlights"
+      },
+      "background": {
+        "DEFAULT": "#FDFBF7",
+        "paper": "#FFFFFF",
+        "description": "Bone White - Reduces glare, feels organic"
+      },
+      "surface": {
+        "DEFAULT": "#FFFFFF",
+        "hover": "#F8FAFC",
+        "active": "#F1F5F9"
+      },
+      "text": {
+        "heading": "#0F172A",
+        "body": "#334155",
+        "muted": "#64748B"
+      },
+      "status": {
+        "success": "#A3BFB3",
+        "warning": "#EAB308",
+        "error": "#EF4444",
+        "info": "#3B82F6"
+      }
+    },
+    "gradients": {
+      "hero": "linear-gradient(135deg, #1B3A24 0%, #2C5530 100%)",
+      "card_hover": "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(27,58,36,0.03) 100%)"
+    }
+  },
+  "layout": {
+    "spacing_system": {
+      "container_padding": "p-4 md:p-6 lg:p-8",
+      "section_gap": "gap-6 md:gap-8",
+      "element_gap": "gap-3"
+    },
+    "grid_strategy": {
+      "dashboard": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6",
+      "form": "flex flex-col gap-5 max-w-lg mx-auto",
+      "card": "bg-white rounded-xl shadow-sm border border-slate-100 p-5 hover:shadow-md transition-shadow duration-200"
+    },
+    "mobile_optimization": {
+      "thumb_zone": "Fixed bottom bar for primary actions (Save, Add) with z-50 bg-white/90 backdrop-blur border-t border-slate-200 p-4",
+      "touch_targets": "min-h-[56px] (h-14) for all inputs and buttons",
+      "safe_area": "pb-24 (bottom padding to avoid content behind fixed bars)"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#1B3A24] text-white hover:bg-[#2C5530] h-14 rounded-lg font-medium shadow-sm active:scale-[0.98] transition-all",
+      "secondary": "bg-[#FDFBF7] text-[#1B3A24] border border-[#1B3A24] hover:bg-[#F1F5F9] h-14 rounded-lg font-medium",
+      "ghost": "text-slate-600 hover:text-[#1B3A24] hover:bg-slate-100 h-10 px-4 rounded-md",
+      "destructive": "bg-red-50 text-red-600 hover:bg-red-100 h-14 rounded-lg"
+    },
+    "inputs": {
+      "base": "h-14 bg-white border border-slate-200 rounded-lg px-4 focus:ring-2 focus:ring-[#1B3A24]/20 focus:border-[#1B3A24] transition-all text-base",
+      "label": "block text-sm font-medium text-slate-700 mb-1.5"
+    },
+    "cards": {
+      "quote_summary": "bg-white rounded-xl border border-slate-200 p-5 shadow-sm relative overflow-hidden",
+      "service_item": "flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-transparent hover:border-slate-200 transition-colors"
+    },
+    "visual_enhancers": {
+      "glassmorphism": "backdrop-blur-md bg-white/80 border border-white/20 shadow-sm",
+      "shadows": "shadow-[0_2px_8px_rgba(27,58,36,0.08)]",
+      "borders": "border border-slate-100"
+    }
+  },
+  "visual_assets": {
+    "icons": {
+      "library": "lucide-react",
+      "style": "stroke-width={1.5} size={24}",
+      "usage": "Use icons for every menu item and action button to aid quick recognition."
+    },
+    "image_style": {
+      "keywords": "botanical, minimalist, tools, nature, flatlay",
+      "filters": "brightness-105 contrast-95 saturate-90 (slightly desaturated organic look)"
+    }
+  },
+  "motion": {
+    "page_transition": "initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3, ease: 'easeOut' }}",
+    "list_stagger": "staggerChildren: 0.05",
+    "hover_lift": "hover:-translate-y-1 transition-transform duration-200"
+  },
+  "accessibility": {
+    "contrast": "Ensure all text on colored backgrounds is White or Very Dark Slate. No Grey on Green.",
+    "touch_targets": "All interactive elements must be at least 44x44px (managed via h-14 classes).",
+    "focus_states": "Visible focus ring using standard Tailwind outline-none ring-2 ring-offset-2 ring-[#1B3A24]"
+  },
+  "instructions_to_main_agent": [
+    "1. IMPLEMENTATION: Use 'lucide-react' for all icons.",
+    "2. THEME: Force Light Mode. The app is for outdoor use; dark mode is hard to read in sunlight.",
+    "3. LANGUAGE: All hardcoded text MUST be in ITALIAN (e.g., 'Preventivo' not 'Quote', 'Clienti' not 'Customers').",
+    "4. ROUTING: Use 'react-router-dom' for navigation.",
+    "5. STATE: Use 'zustand' or 'react-query' for state management if needed, but local state is fine for MVP.",
+    "6. PDF: Use '@react-pdf/renderer' or 'jspdf' for generating the quote PDF.",
+    "7. MOBILE: Always verify the design looks good on 375px width (iPhone SE size). Use 'w-full' for almost everything.",
+    "8. FORM: Use 'react-hook-form' + 'zod' for validation (Italian error messages).",
+    "9. DATA-TESTID: Add data-testid to all inputs, buttons, and major containers."
+  ],
+  "universal_guidelines": [
+    "Avoid gradients for text.",
+    "Do not use generic centered layouts for forms; left-align labels.",
+    "Use 2-3x more spacing than typical (p-6 instead of p-3).",
+    "Never use pure black (#000000). Use Slate-900 (#0F172A).",
+    "Use 'sonner' for toast notifications."
+  ]
+}

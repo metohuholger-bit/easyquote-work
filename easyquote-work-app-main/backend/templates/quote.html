@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preventivo {{ quote_number }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Public Sans', sans-serif;
+            color: #334155;
+            line-height: 1.6;
+            font-size: 11pt;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #1B3A24;
+        }
+        
+        .company-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28pt;
+            font-weight: 700;
+            color: #1B3A24;
+            margin-bottom: 5px;
+        }
+        
+        .company-tagline {
+            font-size: 10pt;
+            color: #64748B;
+            margin-bottom: 15px;
+        }
+        
+        .quote-title {
+            text-align: right;
+            margin-top: -50px;
+        }
+        
+        .quote-label {
+            font-size: 12pt;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .quote-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24pt;
+            font-weight: 700;
+            color: #1B3A24;
+        }
+        
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        
+        .info-block {
+            width: 48%;
+        }
+        
+        .info-block h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 11pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #1B3A24;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        
+        .info-block p {
+            margin: 5px 0;
+            font-size: 10pt;
+            line-height: 1.5;
+        }
+        
+        .date-info {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #F8FAFC;
+            border-left: 4px solid #1B3A24;
+        }
+        
+        .date-info p {
+            font-size: 10pt;
+            color: #475569;
+        }
+        
+        .date-info strong {
+            color: #1B3A24;
+        }
+        
+        .items-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+        }
+        
+        .items-table th {
+            background-color: #1B3A24;
+            color: #FFFFFF;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 10pt;
+            padding: 12px 10px;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .items-table th.text-right {
+            text-align: right;
+        }
+        
+        .items-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 10pt;
+        }
+        
+        .items-table td.text-right {
+            text-align: right;
+        }
+        
+        .items-table tbody tr:hover {
+            background-color: #F8FAFC;
+        }
+        
+        .totals-section {
+            margin-left: auto;
+            width: 45%;
+            margin-top: 20px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            font-size: 11pt;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        
+        .total-row.subtotal {
+            font-weight: 600;
+            background-color: #F8FAFC;
+        }
+        
+        .total-row.grand-total {
+            background-color: #1B3A24;
+            color: #FFFFFF;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14pt;
+            font-weight: 700;
+            padding: 15px;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #E2E8F0;
+            font-size: 9pt;
+            color: #64748B;
+            text-align: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">{{ company.company_name }}</div>
+        <div class="quote-title">
+            <div class="quote-label">Preventivo</div>
+            <div class="quote-number">{{ quote_number }}</div>
+        </div>
+    </div>
+
+    <div class="date-info">
+        <p><strong>Data Preventivo:</strong> {{ quote_date }}</p>
+    </div>
+
+    <div class="info-section">
+        <div class="info-block">
+            <h3>Azienda</h3>
+            <p><strong>{{ company.company_name }}</strong></p>
+            <p>Titolare: {{ company.owner_name }}</p>
+            <p>P.IVA: {{ company.vat_number }}</p>
+            <p>C.F.: {{ company.tax_code }}</p>
+            <p>{{ company.address }}</p>
+            <p>Tel: {{ company.phone }}</p>
+            <p>Email: {{ company.email }}</p>
+        </div>
+        <div class="info-block">
+            <h3>Cliente</h3>
+            <p><strong>{{ customer_name }}</strong></p>
+            <p>{{ customer_address }}</p>
+            <p>Tel: {{ customer_phone }}</p>
+        </div>
+    </div>
+
+    <table class="items-table">
+        <thead>
+            <tr>
+                <th>Descrizione</th>
+                <th>Unità</th>
+                <th class="text-right">Quantità</th>
+                <th class="text-right">Prezzo/Unità</th>
+                <th class="text-right">Totale</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in line_items %}
+            <tr>
+                <td>{{ item.job_name }}</td>
+                <td>{{ item.unit }}</td>
+                <td class="text-right">{{ "%.2f"|format(item.quantity) }}</td>
+                <td class="text-right">€ {{ "%.2f"|format(item.price_per_unit) }}</td>
+                <td class="text-right"><strong>€ {{ "%.2f"|format(item.total) }}</strong></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="totals-section">
+        <div class="total-row subtotal">
+            <span>Subtotale:</span>
+            <span>€ {{ subtotal }}</span>
+        </div>
+        <div class="total-row">
+            <span>IVA (22%):</span>
+            <span>€ {{ iva }}</span>
+        </div>
+        <div class="total-row grand-total">
+            <span>TOTALE:</span>
+            <span>€ {{ total }}</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Preventivo valido 30 giorni dalla data di emissione</p>
+        <p>Tutti i prezzi sono in Euro (€) e includono l'IVA al 22%</p>
+        <p style="margin-top: 15px; font-weight: 600; color: #1B3A24;">{{ company.company_name }} - {{ company.phone }} - {{ company.email }}</p>
+    </div>
+</body>
+</html>
