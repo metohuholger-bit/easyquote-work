@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../contexts/AuthContext';
 import { BookOpen, ShieldCheck, Zap } from 'lucide-react';
@@ -7,13 +7,12 @@ import { toast } from 'sonner';
 
 const Login = () => {
   const { login, isAuthenticated, loading } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!loading && isAuthenticated) {
-      navigate('/', { replace: true });
+      window.location.replace('/');
     }
-  }, [isAuthenticated, loading, navigate]);
+  }, [isAuthenticated, loading]);
 
   if (!loading && isAuthenticated) {
     return <Navigate to="/" replace />;
@@ -24,7 +23,7 @@ const Login = () => {
 
     if (success) {
       toast.success('Accesso effettuato con successo!');
-      navigate('/', { replace: true });
+      window.location.replace('/');
     } else {
       toast.error("Errore durante l'accesso. Riprova.");
     }
