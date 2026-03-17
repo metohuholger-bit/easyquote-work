@@ -11,33 +11,41 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if token exists in localStorage
     const savedToken = localStorage.getItem('token');
     const savedUser = localStorage.getItem('user');
-    
-    if (savedToken && savedUser) {
+
+    if (savedToken) {
       setToken(savedToken);
-      setUser(JSON.parse(savedUser));
     }
+
+    if (savedUser && savedUser !== 'undefined' && savedUser !== 'null') {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch (error) {
+        console.error('Invalid user in localStorage', error);
+        localStorage.removeItem('user');
+      }
+    }
+
     setLoading(false);
   }, []);
 
   const login = async (credentialResponse) => {
     try {
       const { credential } = credentialResponse;
-      
+
       const response = await axiosClient.post('/auth/google', { credential });
       const { access_token, user } = response.data;
-      
+
       setToken(access_token);
       setUser(user);
-      
+
       localStorage.setItem('token', access_token);
       localStorage.setItem('user', JSON.stringify(user));
-      
+
       return true;
     } catch (error) {
-      console.error("Login failed", error);
+      console.error('Login failed', error);
       return false;
     }
   };
