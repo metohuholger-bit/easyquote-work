@@ -14,9 +14,6 @@ import {
   DialogFooter,
 } from "../components/ui/dialog";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,7 +32,7 @@ const Customers = () => {
 
   const loadCustomers = async () => {
     try {
-      const response = await axios.get(`${API}/customers`);
+      const response = await axios.get("/customers");
       setCustomers(response.data);
     } catch (error) {
       console.error("Errore nel caricamento dei clienti:", error);
@@ -48,10 +45,10 @@ const Customers = () => {
 
     try {
       if (editingCustomer) {
-        await axios.put(`${API}/customers/${editingCustomer.id}`, formData);
+        await axios.put(`/customers/${editingCustomer.id}`, formData);
         toast.success("Cliente aggiornato con successo");
       } else {
-        await axios.post(`${API}/customers`, formData);
+        await axios.post("/customers", formData);
         toast.success("Cliente creato con successo");
       }
 
@@ -68,7 +65,7 @@ const Customers = () => {
     if (!window.confirm("Sei sicuro di voler eliminare questo cliente?")) return;
 
     try {
-      await axios.delete(`${API}/customers/${id}`);
+      await axios.delete(`/customers/${id}`);
       toast.success("Cliente eliminato con successo");
       loadCustomers();
     } catch (error) {
@@ -120,7 +117,6 @@ const Customers = () => {
         </Button>
       </div>
 
-      {/* Search */}
       <div className="relative">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
         <Input
@@ -132,7 +128,6 @@ const Customers = () => {
         />
       </div>
 
-      {/* Customer List */}
       <div className="space-y-3" data-testid="customers-list">
         {filteredCustomers.length === 0 ? (
           <div className="bg-white rounded-xl border border-slate-200 p-8 text-center">
@@ -188,7 +183,6 @@ const Customers = () => {
         )}
       </div>
 
-      {/* Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="max-w-lg" data-testid="customer-dialog">
           <DialogHeader>
