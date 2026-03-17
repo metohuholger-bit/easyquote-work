@@ -6,20 +6,27 @@ import { BookOpen, ShieldCheck, Zap } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Login = () => {
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, loading } = useAuth();
   const navigate = useNavigate();
 
-  if (isAuthenticated) {
-    return <Navigate to="/" />;
+  useEffect(() => {
+    if (!loading && isAuthenticated) {
+      navigate('/', { replace: true });
+    }
+  }, [isAuthenticated, loading, navigate]);
+
+  if (!loading && isAuthenticated) {
+    return <Navigate to="/" replace />;
   }
 
   const handleSuccess = async (credentialResponse) => {
     const success = await login(credentialResponse);
+
     if (success) {
       toast.success('Accesso effettuato con successo!');
-      navigate('/');
+      navigate('/', { replace: true });
     } else {
-      toast.error('Errore durante l\'accesso. Riprova.');
+      toast.error("Errore durante l'accesso. Riprova.");
     }
   };
 
@@ -29,7 +36,6 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 transform">
         <div className="w-[800px] h-[400px] bg-gradient-to-r from-emerald-400 to-[#1B3A24] rounded-full blur-3xl opacity-20" />
       </div>
@@ -50,7 +56,6 @@ const Login = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <div className="bg-white/80 backdrop-blur-xl py-8 px-4 shadow-2xl sm:rounded-2xl sm:px-10 border border-white/50">
-          
           <div className="mb-6 space-y-4">
             <div className="flex items-center gap-3 text-sm font-medium text-slate-700 bg-emerald-50 p-3 rounded-xl border border-emerald-100">
               <ShieldCheck className="text-emerald-500" size={20} />
